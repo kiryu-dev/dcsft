@@ -21,10 +21,10 @@ int main(int argc, char *argv[]) {
     } while (i != rank);
     MPI_Waitall(2*commsize, requests.data(), stats.data());
     t = MPI_Wtime() - t;
-    double result_time;
-    MPI_Reduce(&t, &result_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+    double sum_time;
+    MPI_Reduce(&t, &sum_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
     if (rank == 0) {
-        std::cout << "elapsed time: " << result_time;
+        std::cout << "elapsed time: " << sum_time / commsize;
     }
     MPI_Finalize();
     return 0;
