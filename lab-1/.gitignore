@@ -1,0 +1,8 @@
+# Build results
+main
+
+# Sbatch results
+slurm-*
+
+# Visual Studio Code
+.vscode/
