@@ -2,7 +2,7 @@ CPP=mpicxx
 CFLAGS=-O0 -Wall -Wextra -Werror -pedantic -std=c++17
 SOURCES=src/main.cpp
 EXEC=mpiexec
-EXECUTABLE=main
+EXECUTABLE=bin/main
 
 .PHONY: build
 build:
