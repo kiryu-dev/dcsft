@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#SBATCH --nodes=2 --ntasks-per-node=6
+#SBATCH --job-name=lab1
+
+cd $SLURM_SUBMIT_DIR
+
+make
