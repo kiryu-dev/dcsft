@@ -3,11 +3,15 @@
 #include <vector>
 
 int main(int argc, char *argv[]) {
+    int msg_size = 1;
+    if (argc > 2 && std::string_view(argv[1]) == "--msg-size") {
+        msg_size = std::atoi(argv[2]);
+    }
     int commsize, rank;
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &commsize);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    const auto n = 1024*1024;
+    const auto n = msg_size * 1024 * 1024;
     std::vector<std::uint8_t> read_buf(n);
     std::vector<std::uint8_t> send_buf(n, 88);
     std::vector<MPI_Request> requests(2*commsize);
@@ -21,10 +25,10 @@ int main(int argc, char *argv[]) {
     } while (i != rank);
     MPI_Waitall(2*commsize, requests.data(), stats.data());
     t = MPI_Wtime() - t;
-    double sum_time;
-    MPI_Reduce(&t, &sum_time, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+    double max_time;
+    MPI_Reduce(&t, &max_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
     if (rank == 0) {
-        std::cout << "elapsed time: " << sum_time / commsize;
+        std::cout << msg_size << "," << max_time;
     }
     MPI_Finalize();
     return 0;
