@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH --nodes=2 --ntasks-per-node=2
+#SBATCH --ntasks=2 --ntasks-per-node=2 --ntasks-per-socket=2
 #SBATCH --job-name=lab1
 
 cd $SLURM_SUBMIT_DIR
 
-make
+mpiexec ./bin/main --msg-size 512
