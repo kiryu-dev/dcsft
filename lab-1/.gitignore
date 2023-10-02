@@ -9,3 +9,6 @@ slurm-*
 
 # Csv
 *.csv
+
+# Png
+*.png
