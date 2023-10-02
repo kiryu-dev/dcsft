@@ -6,3 +6,6 @@ slurm-*
 
 # Visual Studio Code
 .vscode/
+
+# Csv
+*.csv
