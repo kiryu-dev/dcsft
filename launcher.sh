@@ -21,10 +21,12 @@ function select_task() {
 }
 
 function launch_second_task() {
-    echo -e "${bold}Заходим в ./lab2/...\n"
+    echo -e "${bold}Заходим в ./lab-2/...\n"
+    cd ./lab-2
+    echo -e "${bold}Собираем программу...\n"
     read -p "Введи путь до файла с задачами: ${normal}" filepath
     >&2 echo
-    cd ./lab2 && make && ./main ${filepath}
+    ./main ${filepath}
 }
 
 res=$(select_task)
