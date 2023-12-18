@@ -20,7 +20,17 @@ func New(c []int, n uint64) *strategyMatrix {
 	}
 }
 
-func (s *strategyMatrix) Iterate() {
+func (s *strategyMatrix) Run(eps float64) float64 {
+	s.iterate()
+	dif := s.Max()-s.Min()
+	for dif > eps {
+		s.iterate()
+		dif = s.Max()-s.Min()
+	}
+	return dif
+}
+
+func (s *strategyMatrix) iterate() {
 	s.i++
 	i := argmax(s.a)
 	for j, val := range s.c[i] {

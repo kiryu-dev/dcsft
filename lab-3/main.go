@@ -22,15 +22,13 @@ func main() {
 	cfg := loadCfg(*cfgPath)
 	m := strategyMatrix.New(cfg.C, cfg.N)
 	t := time.Now()
-	m.Iterate()
-	for m.Max()-m.Min() > cfg.Eps {
-		m.Iterate()
-	}
-	log.Println(time.Since(t))
+	res := m.Run(cfg.Eps)
+	log.Println("Elapsed time:", time.Since(t))
 	/* оптимальные стратегии */
-	log.Println(m.P())
-	log.Println(m.Q())
-	log.Println((m.Max() + m.Min()) / 2)
+	log.Println("Oптимaльныe cмeшaнныe cтpaтeгии диcпeтчepa:", m.P())
+	log.Println("Oптимaльныe cмeшaнныe cтpaтeгии ВЦ:", m.Q())
+	log.Println("Цена игры:", res)
+	// log.Println((m.Max() + m.Min()) / 2)
 }
 
 func loadCfg(cfgPath string) *config {
