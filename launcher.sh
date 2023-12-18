@@ -4,6 +4,8 @@ bold=$(tput bold)
 basic=$(tput sgr0)
 
 taskjob1="#!/bin/bash\n\n#SBATCH --nodes=1\n#SBATCH --job-name=lab1\n\ncd \$SLURM_SUBMIT_DIR\n\nsrun --ntasks=2 --cpus-per-task=2 --cpu-bind=v,sockets --mpi=pmi2 mpiexec --report-bindings ./bin/main --msg-size "
+taskjob2="#!/bin/bash\n\n#SBATCH --nodes=1\n#SBATCH --job-name=lab1\n\ncd \$SLURM_SUBMIT_DIR\n\nsrun --ntasks=2 --ntasks-per-node=2 --cpus-per-task=1 --cpu-bind=v,cores --mpi=pmi2 mpiexec --report-bindings ./bin/main --msg-size "
+taskjob3="#!/bin/bash\n\n#SBATCH --nodes=2 --ntasks-per-node=1\n#SBATCH --job-name=lab1\n\ncd \$SLURM_SUBMIT_DIR\n\nsrun mpiexec --report-bindings ./bin/main --msg-size "
 
 
 function select_task() {
@@ -38,9 +40,16 @@ function launch_first_task() {
         case $mode in
             1)
                 echo -e $taskjob1 $msgsize > task.job
+                sbatch task.job
                 break;;
-            2);;
-            3);;
+            2)
+                echo -e $taskjob2 $msgsize > task.job
+                sbatch task.job
+                break;;
+            3)
+                echo -e $taskjob3 $msgsize > task.job
+                sbatch task.job
+                break;;
             *) echo -e "${bold}\nВыбери уровень коммуникационной среды по его номеру! 🤬🤬🤬\n${basic}";;
         esac
     done

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH --nodes=1
-#SBATCH --job-name=lab1Neveyko
+#SBATCH --job-name=lab1
 
 cd $SLURM_SUBMIT_DIR
 
-srun --ntasks=2 --cpus-per-task=2 --cpu-bind=v,sockets --mpi=pmi2 mpiexec --report-bindings ./bin/main --msg-size 128
+srun --ntasks=2 --ntasks-per-node=2 --cpus-per-task=1 --cpu-bind=v,cores --mpi=pmi2 mpiexec --report-bindings ./bin/main --msg-size 512
