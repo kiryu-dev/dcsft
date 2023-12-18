@@ -16,6 +16,7 @@ ax.grid()
 ax.set_xticks(data["n"].to_numpy())
 ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
 plt.title("Зависимость вpeмeни paбoты aлгopитмa oт кoличecтвa n элeмeнтapныx мaшин в cиcтeмe")
+plt.legend(["c1 = 3\nc2 = 5\nc3 = 6\neps = 0.001"])
 plt.ylabel("Время работы алгоритма (с)\n")
 plt.xlabel("Количество элементарных машин")
 
