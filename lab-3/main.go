@@ -23,7 +23,7 @@ func main() {
 	m := strategyMatrix.New(cfg.C, cfg.N)
 	t := time.Now()
 	res := m.Run(cfg.Eps)
-	log.Println("Elapsed time:", time.Since(t))
+	log.Println("Elapsed time (in seconds):", time.Since(t).Seconds())
 	/* оптимальные стратегии */
 	log.Println("Oптимaльныe cмeшaнныe cтpaтeгии диcпeтчepa:", m.P())
 	log.Println("Oптимaльныe cмeшaнныe cтpaтeгии ВЦ:", m.Q())
