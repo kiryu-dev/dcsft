@@ -21,9 +21,11 @@ function select_task() {
 }
 
 function launch_second_task() {
+    clear
     echo -e "${bold}Заходим в ./lab-2/...\n"
     cd ./lab-2
     echo -e "${bold}Собираем программу...\n"
+    make
     read -p "Введи путь до файла с задачами: ${normal}" filepath
     >&2 echo
     ./main ${filepath}
