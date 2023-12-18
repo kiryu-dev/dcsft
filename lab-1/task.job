@@ -1,10 +1,8 @@
 #!/bin/bash
 
-#SBATCH --ntasks=2 --ntasks-per-node=2 --ntasks-per-socket=2
-#SBATCH --job-name=lab1
+#SBATCH --nodes=1
+#SBATCH --job-name=lab1Neveyko
 
 cd $SLURM_SUBMIT_DIR
 
-make build
-
-mpiexec ./bin/main --msg-size 512
+srun --ntasks=2 --cpus-per-task=2 --cpu-bind=v,sockets --mpi=pmi2 mpiexec --report-bindings ./bin/main --msg-size 128

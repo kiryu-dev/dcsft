@@ -3,14 +3,7 @@
 bold=$(tput bold)
 basic=$(tput sgr0)
 
-taskjob1="#!/bin/bash
-
-#SBATCH --nodes=1
-#SBATCH --job-name=lab1Neveyko
-
-cd $SLURM_SUBMIT_DIR
-
-srun --ntasks=2 --cpus-per-task=2 --cpu-bind=v,sockets --mpi=pmi2 mpiexec --report-bindings ./bin/main --msg-size "
+taskjob1="#!/bin/bash\n\n#SBATCH --nodes=1\n#SBATCH --job-name=lab1\n\ncd \$SLURM_SUBMIT_DIR\n\nsrun --ntasks=2 --cpus-per-task=2 --cpu-bind=v,sockets --mpi=pmi2 mpiexec --report-bindings ./bin/main --msg-size "
 
 
 function select_task() {
@@ -44,7 +37,7 @@ function launch_first_task() {
         read -n1 -r mode
         case $mode in
             1)
-                echo $taskjob1 $msgsize > task.job
+                echo -e $taskjob1 $msgsize > task.job
                 break;;
             2);;
             3);;
