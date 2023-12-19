@@ -25,8 +25,8 @@ func main() {
 	res := m.Run(cfg.Eps)
 	log.Println("Elapsed time (in seconds):", time.Since(t).Seconds())
 	/* оптимальные стратегии */
-	log.Println("Oптимaльныe cмeшaнныe cтpaтeгии диcпeтчepa:", m.P())
-	log.Println("Oптимaльныe cмeшaнныe cтpaтeгии ВЦ:", m.Q())
+	log.Println("Oптимaльныe cтpaтeгии диcпeтчepa:", m.P())
+	log.Println("Oптимaльныe cтpaтeгии ВЦ:", m.Q())
 	log.Println("Цена игры:", res)
 	// log.Println((m.Max() + m.Min()) / 2)
 }
